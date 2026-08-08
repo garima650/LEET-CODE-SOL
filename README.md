@@ -6,8 +6,3 @@
 |  |
 | ------- |
 | [1295-find-numbers-with-even-number-of-digits](https://github.com/garima650/leet_code-solution/tree/master/1295-find-numbers-with-even-number-of-digits) |
-## Math
-|  |
-| ------- |
-| [1295-find-numbers-with-even-number-of-digits](https://github.com/garima650/leet_code-solution/tree/master/1295-find-numbers-with-even-number-of-digits) |
-<!---LeetCode Topics End-->
