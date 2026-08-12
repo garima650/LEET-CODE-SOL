@@ -1,21 +1,20 @@
-# Python Solution
-class Solution:
+class Solution(object):
     def productExceptSelf(self, nums):
-        n = len(nums)
-        leftProducts = [1] * n
-        rightProducts = [1] * n
-        result = [0] * n
-        
-        # Calculate products of all elements to the left
-        for i in range(1, n):
-            leftProducts[i] = leftProducts[i - 1] * nums[i - 1]
-        
-        # Calculate products of all elements to the right
-        for i in range(n - 2, -1, -1):
-            rightProducts[i] = rightProducts[i + 1] * nums[i + 1]
-        
-        # Multiply left and right products
-        for i in range(n):
-            result[i] = leftProducts[i] * rightProducts[i]
-        
-        return result
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        pro=1
+        zero=0
+        for i in nums:
+            if i!=0:
+                pro*=i
+            else:
+                zero+=1
+        if zero==0:
+            res=[pro/i for i in nums]
+        elif zero>1:
+            res=[0 for i in nums]
+        else:
+            res=[0 if i!=0 else pro for i in nums]
+        return res
