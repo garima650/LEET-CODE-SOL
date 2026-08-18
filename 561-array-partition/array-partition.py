@@ -4,15 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        s=sorted(nums)
-        s1=0
-        for i in range(0,len(nums),2):
-            s1+=min(s[i],s[i+1])
-        return s1
-            
-
-
-
-
+        # Step 1: Sort the array in ascending order
+        nums.sort()
         
-        
+        # Step 2: Sum every second element starting from index 0
+        # nums[::2] creates a slice containing elements at index 0, 2, 4, ...
+        return sum(nums[::2])
