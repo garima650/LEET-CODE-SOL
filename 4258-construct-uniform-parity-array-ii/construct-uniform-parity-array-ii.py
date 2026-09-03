@@ -1,18 +1,15 @@
-class Solution:
-    def uniformArray(self, nums):
-        smallestOdd = float('inf')
-
-        for num in nums:
-            if num % 2 == 1:
-                smallestOdd = min(smallestOdd, num)
-
-        # Already all even
-        if smallestOdd == float('inf'):
+class Solution(object):
+    def uniformArray(self, nums1):
+        """
+        :type nums1: List[int]
+        :rtype: bool
+        """
+        # Step 1: Find the minimum element in the array
+        min_val = min(nums1)
+        
+        # Step 2: If the minimum value is odd, it's always possible
+        if min_val % 2 != 0:
             return True
-
-        # Check whether every even number can become odd
-        for num in nums:
-            if num % 2 == 0 and num <= smallestOdd:
-                return False
-
-        return True
+            
+        # Step 3: If the minimum value is even, all elements must be even
+        return all(x % 2 == 0 for x in nums1)
