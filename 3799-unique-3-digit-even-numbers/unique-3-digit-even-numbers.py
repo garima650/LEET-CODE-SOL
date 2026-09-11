@@ -1,26 +1,35 @@
 class Solution(object):
     def totalNumbers(self, digits):
-        """
-        :type digits: List[int]
-        :rtype: int
-        """
-        nums = set()
-        n = len(digits)
+        if not digits:
+            return 0
 
-        for i in range(n):
-            if digits[i] == 0:
+        mp = [0] * 10
+
+        for digit in digits:
+            mp[digit] += 1
+
+        st = set()
+
+        for i in range(1, 10):
+            if mp[i] == 0:
                 continue
 
-            for j in range(n):
-                if j == i:
+            mp[i] -= 1
+
+            for j in range(10):
+                if mp[j] == 0:
                     continue
 
-                for k in range(n):
-                    if k == i or k == j:
+                mp[j] -= 1
+
+                for k in range(0, 10, 2):
+                    if mp[k] == 0:
                         continue
 
-                    if digits[k] % 2 == 0:
-                        num = digits[i] * 100 + digits[j] * 10 + digits[k]
-                        nums.add(num)
+                    st.add(i * 100 + j * 10 + k)
 
-        return len(nums)
+                mp[j] += 1
+
+            mp[i] += 1
+
+        return len(st)
