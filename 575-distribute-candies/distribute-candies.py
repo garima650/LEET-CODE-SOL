@@ -1,9 +1,14 @@
 class Solution(object):
     def distributeCandies(self, candyType):
+        """
+        :type candyType: List[int]
+        :rtype: int
+        """
+        unique=len(set(candyType))
+
+        half=len(candyType)//2
         
-        n = len(candyType)
-        
-        unique_types = len(set(candyType))
-        
-        return min(unique_types, n // 2)
+
+
+        return min(unique,half)
         
