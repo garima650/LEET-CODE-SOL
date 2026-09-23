@@ -1,18 +1,26 @@
 class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
-        target, n = sum(nums) - x, len(nums)
+        n = len(nums)
+        # prefixes = [0]
+        # for num in nums:
+        #     prefixes.append(num + prefixes[-1])
         
+        # target = prefixes[-1] - x
+        target = sum(nums) - x
         if target == 0:
             return n
-        
-        max_len = cur_sum = left = 0
-        
-        for right, val in enumerate(nums):
-            cur_sum += val
-            while left <= right and cur_sum > target:
-                cur_sum -= nums[left]
-                left += 1
-            if cur_sum == target:
-                max_len = max(max_len, right - left + 1)
-        
-        return n - max_len if max_len else -1
+        elif target < 0:
+            return -1
+
+        res = -1
+        currsum = 0
+        l = 0
+        for r in range(n):
+            currsum += nums[r]
+            while currsum > target:
+                currsum -= nums[l]
+                l += 1
+            
+            if currsum == target:
+                res = max(res, (r - l + 1))    
+        return n - res if res != -1 else -1
