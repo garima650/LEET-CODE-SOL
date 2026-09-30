@@ -1,14 +1,15 @@
 class Solution:
-    def maxDepthAfterSplit(self, seq):
-        answer = []
-        current_group = 1
-
-        for bracket in seq:
-            if bracket == '(':
-                answer.append(1 - current_group)
+    def maxDepthAfterSplit(self, seq: str) -> list[int]:
+        depth = 0
+        level = []
+        for c in seq:
+            if c == '(':
+                depth = 1 - depth
+                level.append(depth)
+            elif c == ')':
+                level.append(depth)
+                depth = 1 - depth
             else:
-                answer.append(current_group)
-
-            current_group ^= 1
-
-        return answer
+                level.append(depth)
+        
+        return level
