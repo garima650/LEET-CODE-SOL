@@ -1,23 +1,19 @@
-class Solution:
+class Solution(object):
     def minOperations(self, s):
-        n = len(s)
-        ans = ''.join(sorted(s))
-
-        if s == ans:
+        """
+        :type s: str
+        :rtype: int
+        """
+        n=len(s)
+        if len(s)<=1: return 0
+        if len(s)==2: return 0 if s[0] <= s[1] else -1
+        if all(s[i] <= s[i+1] for i in range(n-1)):
             return 0
-
-        if n == 2:
-            return -1
-
-        mini = min(s)
-        maxi = max(s)
-
-        idx1 = s.find(mini)
-        idx2 = s.rfind(maxi)
-
-        if s[0] == mini or s[n - 1] == maxi:
-            return 1
-        elif idx1 != n - 1 or idx2 != 0:
-            return 2
-        else:
+        mn,mx=min(s),max(s)
+        if s[0] == mx and mn == s[-1]:
+            if s.count(mn)>1 or s.count(mx) >1:
+                return 2
             return 3
+        if s[0] == mn or s[-1] == mx:
+            return 1
+        return 2    
